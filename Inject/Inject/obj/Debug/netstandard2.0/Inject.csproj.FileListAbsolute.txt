@@ -1,0 +1,9 @@
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.csprojResolveAssemblyReference.cache
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.csproj.CoreCompileInputs.cache
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.AssemblyInfoInputs.cache
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.AssemblyInfo.cs
+C:\Github\Inject\Inject\Inject\bin\Debug\netstandard2.0\Inject.deps.json
+C:\Github\Inject\Inject\Inject\bin\Debug\netstandard2.0\Inject.dll
+C:\Github\Inject\Inject\Inject\bin\Debug\netstandard2.0\Inject.pdb
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.dll
+C:\Github\Inject\Inject\Inject\obj\Debug\netstandard2.0\Inject.pdb
