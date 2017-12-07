@@ -2,25 +2,22 @@
 
 namespace Inject.App
 {
-	internal class AppReturnsMapper : IReturnsMapper
-	{
-		private readonly ILifeTimeDependency dependency;
+  internal class AppReturnsMapper : IReturnsMapper
+  {
+    private readonly IDependencyInfo dependency;
 
-		public AppReturnsMapper(ILifeTimeDependency dependency, Func<IContainer, object> factory)
-		{
-			dependency.Factory = factory;
-			this.dependency = dependency;
-		}
+    public AppReturnsMapper(IDependencyInfo dependency) => this.dependency = dependency;
 
-		public ILifeTimeMapper As<TLifeTime>() where TLifeTime : ILifeTime, new()
-		{
-			return new AppLifeTimeMapper(dependency, new TLifeTime());
-		}
+    public AppReturnsMapper(IDependencyInfo dependency, Func<IContainer, object> factory)
+      : this(dependency) => dependency.Factory = factory;
 
-		public void For<TDependency>() where TDependency : class
-		{
-			new AppLifeTimeMapper(dependency, new Transient())
-				.For<TDependency>();
-		}
-	}
+    public ILifeTimeMapper As<TLifeTime>()
+      where TLifeTime : ILifeTime, new() =>
+        new AppLifeTimeMapper(dependency, new TLifeTime());
+
+    public void For<TDependency>()
+      where TDependency : class =>
+        new AppLifeTimeMapper(dependency)
+          .For<TDependency>();
+  }
 }

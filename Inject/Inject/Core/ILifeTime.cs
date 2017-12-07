@@ -2,6 +2,6 @@
 {
 	public interface ILifeTime
 	{
-		TEntity Resolve<TEntity>(IContainer container, IDependency dependency);
+		TEntity Resolve<TEntity>(IContainer container, IDependencyMetaInfo dependency);
 	}
 }

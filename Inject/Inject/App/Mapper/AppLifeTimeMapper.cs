@@ -1,19 +1,16 @@
 ﻿namespace Inject.App
 {
-	internal class AppLifeTimeMapper : ILifeTimeMapper
-	{
-		private readonly ILifeTimeDependency dependency;
+  internal class AppLifeTimeMapper : ILifeTimeMapper
+  {
+    private readonly IDependencyInfo dependency;
 
-		public AppLifeTimeMapper(ILifeTimeDependency dependency, ILifeTime lifeTime)
-		{
-			dependency.LifeTime = lifeTime;
-			this.dependency = dependency;
-		}
+    public AppLifeTimeMapper(IDependencyInfo dependency) => this.dependency = dependency;
 
-		public void For<TDependency>()
-      where TDependency : class
-		{
-			dependency.Dependency = typeof(TDependency);
-		}
-	}
+    public AppLifeTimeMapper(IDependencyInfo dependency, ILifeTime lifeTime)
+      : this(dependency) => dependency.LifeTime = lifeTime;
+
+    public void For<TDependency>()
+      where TDependency : class =>
+        dependency.Dependency = typeof(TDependency);
+  }
 }

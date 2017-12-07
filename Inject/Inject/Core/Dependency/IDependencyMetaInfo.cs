@@ -2,7 +2,7 @@
 
 namespace Inject
 {
-  public interface IDependency
+  public interface IDependencyMetaInfo
   {
     Type Entity { get; }
     Type Implemented { get; set; }

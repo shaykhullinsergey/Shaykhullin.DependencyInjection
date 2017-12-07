@@ -1,26 +1,24 @@
-﻿using Inject.App;
+﻿using System;
+using Inject.App;
 
 namespace Inject
 {
   public class AppContainerBuilder : IContainerBuilder
-	{
+  {
     private readonly IDependencyContainer container;
 
-    public AppContainerBuilder()
-    {
-      container = new AppDependencyContainer();
-    }
+    public AppContainerBuilder() => container = new AppDependencyContainer();
 
-		public IContainer Container => container;
+    public IContainer Container => new AppDependencyContainer(container);
 
-		public void Define<TModule>() where TModule : IModule, new()
-		{
-			new TModule().Register(this);
-		}
+    public void Callback(Action<IContainerBuilder> callback) => callback(this);
 
-		public IRegisterEntity<TEntity> Register<TEntity>() where TEntity : class
-		{
-			return new AppRegisterEntity<TEntity>(container.Register<TEntity>());
-		}
-	}
+    public void Module<TModule>()
+      where TModule : IModule, new() =>
+        new TModule().Register(this);
+
+    public IRegisterEntityMapper<TEntity> Register<TEntity>()
+      where TEntity : class =>
+        new AppRegisterEntityMapper<TEntity>(container.Register<TEntity>());
+  }
 }

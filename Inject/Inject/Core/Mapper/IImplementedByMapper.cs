@@ -2,7 +2,7 @@
 
 namespace Inject
 {
-	public interface IImplementedBy<TEntity, TImplemented> : IReturnsMapper
+	public interface IImplementedByMapper<TEntity, TImplemented> : IReturnsMapper
 		where TEntity : class
 		where TImplemented : class, TEntity
 	{

@@ -1,4 +1,11 @@
-﻿Иммутабельность пострадала
-Где делать проверку на уникальность IDependency
-Разделить IContainer и IDependencyContainer?
-Как копировать лист
+﻿Иммутабельность пострадала - копирую все зависимости при обращении к контейнеру
+Где делать проверку на уникальность IDependency - в конструкторе контейнера при копировании
+
+Разделить IContainer и IDependencyContainer? - нет
+
+Как копировать лист - скопировать типы, новый ILifeTime, injectFields по ссылке
+
+Филды базового класса не резолвятся - Добавлен обход по всем базовым до object'a
+Кастомизация контейнера (ReturnCurrent, ReturnNewContainer) - НЕ РЕШЕНО!!
+
+Передавать InjectFields без инициализации - Разделил на HierarchicalInjectFields - singleton и InjectFields getter

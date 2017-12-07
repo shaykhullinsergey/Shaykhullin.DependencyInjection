@@ -1,0 +1,10 @@
+*.dll
+*.pdb
+*.cache
+*.xml
+*.targets
+*.props
+*.json
+*.nupkg
+Inject/.vs/
+Inject/Inject/obj/

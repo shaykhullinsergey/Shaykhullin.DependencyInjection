@@ -1,58 +1,68 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace Inject.App
 {
   internal class AppDependencyContainer : IDependencyContainer
   {
-    private List<ILifeTimeDependency> dependencies = new List<ILifeTimeDependency>();
+    public AppDependencyContainer() => Dependencies = new List<IDependencyInfo>();
 
-    public ILifeTimeDependency Register<TEntity>()
+    public AppDependencyContainer(IDependencyContainer container) : this()
     {
-      dependencies.Any(outer =>
-        dependencies.Any(inner => 
+      container.Dependencies.Any(outer =>
+        container.Dependencies.Any(inner =>
           outer != inner && outer.Entity == inner.Entity && outer.Dependency == inner.Dependency)
             ? throw new TypeAlreadyRegisteredException(outer.Entity, outer.Implemented, outer.Dependency)
             : false);
 
-      var dependency = new AppDependency<TEntity>();
-      dependencies.Add(dependency);
+      Dependencies.AddRange(container.Dependencies
+        .Select(dependency => new AppDependencyInfo(dependency)));
+    }
+    public List<IDependencyInfo> Dependencies { get; }
+
+    public IDependencyInfo Register<TEntity>()
+    {
+      var dependency = new AppDependencyInfo(typeof(TEntity));
+      Dependencies.Add(dependency);
       return dependency;
     }
 
-    // Resolve<TEntity, TDependency> --> ResolveFor
-    public TEntity Resolve<TEntity>() where TEntity : class
+    public TEntity Resolve<TEntity>()
+      where TEntity : class
     {
-      var dependency = dependencies
+      var dependency = Dependencies
         .SingleOrDefault(d => d.Dependency == null && d.Entity == typeof(TEntity))
-          ?? throw new TypeIsNotRegisteredException(typeof(TEntity), typeof(TEntity));
+        ?? throw new TypeIsNotRegisteredException(typeof(TEntity));
 
-      var instance = dependency.LifeTime.Resolve<TEntity>(this, dependency);
-
-      return ResolveRecursive<TEntity>(instance);
+      return ResolveRecursive<TEntity>(dependency);
     }
 
-    private TEntity ResolveRecursive<TEntity>(object instance)
+    public TEntity Resolve<TEntity, TDependency>()
+      where TEntity : class
+      where TDependency : class
     {
-      var instanceType = instance.GetType();
-      var privateFields = instanceType
-        .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-        .Where(f => f.IsDefined(typeof(InjectAttribute), false))
-        .Where(f => f.GetValue(instance) == null);
+      var dependency = Dependencies
+        .SingleOrDefault(d => d.Entity == typeof(TEntity) && d.Dependency == typeof(TDependency))
+        ?? throw new TypeIsNotRegisteredException(typeof(TEntity), typeof(TDependency));
 
-      foreach (var field in privateFields)
+      return ResolveRecursive<TEntity>(dependency);
+    }
+
+    private TEntity ResolveRecursive<TEntity>(IDependencyInfo dependency)
+    {
+      var instance = dependency.LifeTime.Resolve<TEntity>(this, dependency);
+
+      foreach (var field in dependency.HierarchicalInjectFields.Where(f => f.GetValue(instance) == null))
       {
-        var fieldDependency = dependencies
-          .SingleOrDefault(d => d.Dependency == instanceType && d.Entity == field.FieldType)
-            ?? dependencies.SingleOrDefault(d => d.Dependency == null && d.Entity == field.FieldType)
-            ?? throw new TypeIsNotRegisteredException(field.FieldType, instanceType);
+        var fieldDependency = Dependencies
+          .SingleOrDefault(d => d.Dependency == field.DeclaringType && d.Entity == field.FieldType)
+            ?? Dependencies.SingleOrDefault(d => d.Dependency == null && d.Entity == field.FieldType)
+            ?? throw new TypeIsNotRegisteredException(field.FieldType, field.DeclaringType);
 
-        var fieldInstance = fieldDependency.LifeTime.Resolve<object>(this, fieldDependency);
-        field.SetValue(instance, ResolveRecursive<object>(fieldInstance));
+        field.SetValue(instance, ResolveRecursive<object>(fieldDependency));
       }
 
-      return (TEntity)instance;
+      return instance;
     }
   }
 }

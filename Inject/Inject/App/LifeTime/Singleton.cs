@@ -3,12 +3,12 @@
 namespace Inject
 {
   public class Singleton : ILifeTime
-	{
+  {
     private object instance;
 
-    public TEntity Resolve<TEntity>(IContainer container, IDependency dependency)
+    public TEntity Resolve<TEntity>(IContainer container, IDependencyMetaInfo dependency)
     {
-      if(instance == null)
+      if (instance == null)
       {
         if (dependency.Factory != null)
         {
@@ -19,6 +19,11 @@ namespace Inject
       }
 
       return (TEntity)instance;
+
+      //(TEntity)(instance ??
+      //	(dependency.Factory != null
+      //		? (instance = dependency.Factory(container))
+      //		: (instance = Activator.CreateInstance(dependency.Implemented))));
     }
   }
 }

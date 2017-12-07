@@ -1,7 +1,10 @@
-﻿namespace Inject
+﻿using System.Collections.Generic;
+
+namespace Inject
 {
 	interface IDependencyContainer : IContainer
 	{
-		ILifeTimeDependency Register<TEntity>();
+		List<IDependencyInfo> Dependencies { get; }
+		IDependencyInfo Register<TEntity>();
 	}
 }

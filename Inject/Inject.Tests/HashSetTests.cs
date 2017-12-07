@@ -4,8 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Inject.Tests
 {
-  [TestClass]
-  public class UnitTest1
+  public class HashSetTests
   {
     class MyClass : IEquatable<MyClass>
     {
@@ -28,7 +27,6 @@ namespace Inject.Tests
       }
     }
 
-    [TestMethod]
     public void TestMethod1()
     {
       var hs = new HashSet<MyClass>();

@@ -15,7 +15,7 @@ namespace Inject.Tests
     }
 
     [TestMethod]
-    public void TestMethod1()
+    public void ReturnsWithInjectWorks()
     {
       var a = new A();
 
