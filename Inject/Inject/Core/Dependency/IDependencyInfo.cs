@@ -1,13 +1,13 @@
-﻿using System;
+﻿using System.Reflection;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace Inject
 {
-	interface IDependencyInfo : IDependencyMetaInfo
+  interface IDependencyInfo : IDependencyMetaInfo
 	{
 		ILifeTime LifeTime { get; set; }
-		IEnumerable<FieldInfo> HierarchicalInjectFields { get; }
+
 		IEnumerable<FieldInfo> InjectFields { get; }
+		IEnumerable<FieldInfo> HierarchicalInjectFields { get; }
 	}
 }

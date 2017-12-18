@@ -9,7 +9,7 @@ namespace Inject.Tests
     public class TestA
     {
       [Inject]
-      private TestC c;
+      private readonly TestC c;
 
       [Inject]
       private TestD d;
@@ -40,7 +40,7 @@ namespace Inject.Tests
     public class TestC
     {
       [Inject]
-      private TestD d;
+      private readonly TestD d;
 
       public TestD D => d;
 
@@ -86,7 +86,9 @@ namespace Inject.Tests
         .ImplementedBy<TestB>();
 
       var a = builder.Container.Resolve<TestA>();
-      Console.WriteLine(a.C == null);
+      Assert.IsNotNull(a.C.D);
+      Assert.IsNotNull(a.D);
+      Assert.IsTrue(a is TestB);
     }
   }
 }

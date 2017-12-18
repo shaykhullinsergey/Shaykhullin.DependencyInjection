@@ -21,7 +21,7 @@ namespace Inject.App
       Implemented = dependency.Implemented;
       Dependency = dependency.Dependency;
       Factory = dependency.Factory;
-      LifeTime = (ILifeTime)Activator.CreateInstance(dependency.LifeTime.GetType());
+      LifeTime = WithoutParameters.Instance<ILifeTime>(dependency.LifeTime.GetType());
       injectFields = dependency.InjectFields;
     }
 

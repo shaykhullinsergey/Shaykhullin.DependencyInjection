@@ -1,0 +1,13 @@
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.csproj.CoreCompileInputs.cache
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.AssemblyInfoInputs.cache
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.AssemblyInfo.cs
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.Sandbox.deps.json
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.Sandbox.runtimeconfig.json
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.Sandbox.runtimeconfig.dev.json
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.Sandbox.dll
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.Sandbox.pdb
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.dll
+C:\Github\Inject\Inject\Inject.Sandbox\bin\Debug\netcoreapp2.0\Inject.pdb
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.csprojResolveAssemblyReference.cache
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.dll
+C:\Github\Inject\Inject\Inject.Sandbox\obj\Debug\netcoreapp2.0\Inject.Sandbox.pdb

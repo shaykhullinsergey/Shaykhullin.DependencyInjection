@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Inject.App;
+using System;
 
 namespace Inject
 {
   public class Transient : ILifeTime
   {
+    public bool ResolveAgain => true;
+
     public TEntity Resolve<TEntity>(IContainer container, IDependencyMetaInfo dependency)
     {
       if (dependency.Factory != null)
@@ -11,7 +14,7 @@ namespace Inject
         return (TEntity)dependency.Factory(container);
       }
 
-      return (TEntity)Activator.CreateInstance(dependency.Implemented);
+      return WithoutParameters.Instance<TEntity>(dependency.Implemented);
 
       //return dependency.Factory != null
       //	? (TEntity)dependency.Factory(container)

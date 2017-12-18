@@ -2,6 +2,7 @@
 {
   public interface ILifeTimeMapper
 	{
-		void For<TDependency>() where TDependency : class;
+		void For<TDependency>()
+      where TDependency : class;
 	}
 }

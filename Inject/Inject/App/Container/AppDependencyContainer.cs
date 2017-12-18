@@ -9,15 +9,16 @@ namespace Inject.App
 
     public AppDependencyContainer(IDependencyContainer container) : this()
     {
-      container.Dependencies.Any(outer =>
-        container.Dependencies.Any(inner =>
-          outer != inner && outer.Entity == inner.Entity && outer.Dependency == inner.Dependency)
-            ? throw new TypeAlreadyRegisteredException(outer.Entity, outer.Implemented, outer.Dependency)
-            : false);
+      foreach (var outer in Dependencies)
+        foreach (var inner in Dependencies)
+          if(outer != inner)
+            if(outer.Entity == inner.Entity && outer.Dependency == inner.Dependency)
+              throw new TypeAlreadyRegisteredException(outer.Entity, outer.Implemented, outer.Dependency);
 
       Dependencies.AddRange(container.Dependencies
         .Select(dependency => new AppDependencyInfo(dependency)));
     }
+
     public List<IDependencyInfo> Dependencies { get; }
 
     public IDependencyInfo Register<TEntity>()
@@ -30,36 +31,51 @@ namespace Inject.App
     public TEntity Resolve<TEntity>()
       where TEntity : class
     {
-      var dependency = Dependencies
-        .SingleOrDefault(d => d.Dependency == null && d.Entity == typeof(TEntity))
-        ?? throw new TypeIsNotRegisteredException(typeof(TEntity));
+      for (int index = 0; index < Dependencies.Count; index++)
+      {
+        var dependency = Dependencies[index];
 
-      return ResolveRecursive<TEntity>(dependency);
+        if (dependency.Dependency == null || dependency.Entity == typeof(TEntity))
+        {
+          return ResolveRecursive<TEntity>(dependency);
+        }
+      }
+
+      throw new TypeIsNotRegisteredException(typeof(TEntity));
     }
 
     public TEntity Resolve<TEntity, TDependency>()
       where TEntity : class
       where TDependency : class
     {
-      var dependency = Dependencies
-        .SingleOrDefault(d => d.Entity == typeof(TEntity) && d.Dependency == typeof(TDependency))
-        ?? throw new TypeIsNotRegisteredException(typeof(TEntity), typeof(TDependency));
+      for (int index = 0; index < Dependencies.Count; index++)
+      {
+        var dependency = Dependencies[index];
 
-      return ResolveRecursive<TEntity>(dependency);
+        if (dependency.Entity == typeof(TEntity) && dependency.Dependency == typeof(TDependency))
+        {
+          return ResolveRecursive<TEntity>(dependency);
+        }
+      }
+
+      throw new TypeIsNotRegisteredException(typeof(TEntity), typeof(TDependency));
     }
 
     private TEntity ResolveRecursive<TEntity>(IDependencyInfo dependency)
     {
       var instance = dependency.LifeTime.Resolve<TEntity>(this, dependency);
 
-      foreach (var field in dependency.HierarchicalInjectFields.Where(f => f.GetValue(instance) == null))
+      if(dependency.LifeTime.ResolveAgain)
       {
-        var fieldDependency = Dependencies
-          .SingleOrDefault(d => d.Dependency == field.DeclaringType && d.Entity == field.FieldType)
-            ?? Dependencies.SingleOrDefault(d => d.Dependency == null && d.Entity == field.FieldType)
-            ?? throw new TypeIsNotRegisteredException(field.FieldType, field.DeclaringType);
+        foreach (var field in dependency.HierarchicalInjectFields)
+        {
+          var fieldDependency = Dependencies
+            .FirstOrDefault(d => d.Dependency == field.DeclaringType && d.Entity == field.FieldType)
+              ?? Dependencies.FirstOrDefault(d => d.Dependency == null && d.Entity == field.FieldType)
+              ?? throw new TypeIsNotRegisteredException(field.FieldType, field.DeclaringType);
 
-        field.SetValue(instance, ResolveRecursive<object>(fieldDependency));
+          field.SetValue(instance, ResolveRecursive<object>(fieldDependency));
+        }
       }
 
       return instance;
