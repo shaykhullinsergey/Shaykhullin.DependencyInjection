@@ -6,7 +6,7 @@ namespace Inject
   public class AppContainerBuilder : IContainerBuilder
   {
     private IDependencyContainer container;
-    private bool firstTime = true;
+    private bool needContainer = false;
 
     public AppContainerBuilder()
     {
@@ -17,17 +17,21 @@ namespace Inject
     {
       get
       {
-        if (firstTime)
-        {
-          firstTime = false;
-          return container;
-        }
+        foreach (var outer in container.Dependencies)
+          foreach (var inner in container.Dependencies)
+            if (outer != inner)
+              if (outer.Entity == inner.Entity && outer.Dependency == inner.Dependency)
+                throw new TypeAlreadyRegisteredException(outer.Entity, outer.Implemented, outer.Dependency);
 
-        return container = new AppDependencyContainer(container);
+        needContainer = true;
+        return container;
       }
     }
 
-    public void Callback(Action<IContainerBuilder> callback) => callback(this);
+    public void Callback(Action<IContainerBuilder> callback) 
+    {
+      callback(this);
+    }
 
     public void Module<TModule>()
       where TModule : IModule, new()
@@ -38,7 +42,13 @@ namespace Inject
     public IRegisterEntityMapper<TEntity> Register<TEntity>()
       where TEntity : class
     {
-      return new AppRegisterEntityMapper<TEntity>(container.Register<TEntity>());
+      if (needContainer)
+      {
+        container = new AppDependencyContainer(container);
+      }
+
+      var dependency = container.Register<TEntity>();
+      return new AppRegisterEntityMapper<TEntity>(dependency);
     }
   }
 }

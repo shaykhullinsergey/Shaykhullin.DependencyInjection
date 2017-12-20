@@ -9,12 +9,6 @@ namespace Inject.App
 
     public AppDependencyContainer(IDependencyContainer container) : this()
     {
-      foreach (var outer in Dependencies)
-        foreach (var inner in Dependencies)
-          if(outer != inner)
-            if(outer.Entity == inner.Entity && outer.Dependency == inner.Dependency)
-              throw new TypeAlreadyRegisteredException(outer.Entity, outer.Implemented, outer.Dependency);
-
       Dependencies.AddRange(container.Dependencies
         .Select(dependency => new AppDependencyInfo(dependency)));
     }
@@ -35,7 +29,7 @@ namespace Inject.App
       {
         var dependency = Dependencies[index];
 
-        if (dependency.Dependency == null || dependency.Entity == typeof(TEntity))
+        if (dependency.Dependency == null && dependency.Entity == typeof(TEntity))
         {
           return ResolveRecursive<TEntity>(dependency);
         }
