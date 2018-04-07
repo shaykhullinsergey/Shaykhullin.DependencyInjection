@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Network.DependencyInjection.Core\Network.DependencyInjection.Core.csproj" />
+    <ProjectReference Include="..\DependencyInjection.Core\DependencyInjection.Core.csproj" />
   </ItemGroup>
 </Project>

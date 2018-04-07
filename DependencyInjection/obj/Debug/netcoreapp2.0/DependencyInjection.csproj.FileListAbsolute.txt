@@ -1,0 +1,11 @@
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/bin/Debug/netcoreapp2.0/DependencyInjection.deps.json
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/bin/Debug/netcoreapp2.0/DependencyInjection.dll
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/bin/Debug/netcoreapp2.0/DependencyInjection.pdb
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/bin/Debug/netcoreapp2.0/DependencyInjection.Core.dll
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/bin/Debug/netcoreapp2.0/DependencyInjection.Core.pdb
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.csproj.CoreCompileInputs.cache
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.AssemblyInfoInputs.cache
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.AssemblyInfo.cs
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.csproj.CopyComplete
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.dll
+/home/shaykhullin/Git/DependencyInjection/DependencyInjection/obj/Debug/netcoreapp2.0/DependencyInjection.pdb
