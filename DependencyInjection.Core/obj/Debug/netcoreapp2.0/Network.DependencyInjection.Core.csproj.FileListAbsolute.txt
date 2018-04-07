@@ -1,0 +1,16 @@
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.deps.json
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.dll
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.pdb
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.csproj.CoreCompileInputs.cache
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.AssemblyInfoInputs.cache
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.AssemblyInfo.cs
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.dll
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.pdb
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.deps.json
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.dll
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/bin/Debug/netcoreapp2.0/Network.DependencyInjection.Core.pdb
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.csproj.CoreCompileInputs.cache
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.AssemblyInfoInputs.cache
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.AssemblyInfo.cs
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.dll
+/home/shaykhullin/Git/Shaykhullin.DependencyInjection/Network.DependencyInjection.Core/obj/Debug/netcoreapp2.0/Network.DependencyInjection.Core.pdb

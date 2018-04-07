@@ -1,0 +1,21 @@
+﻿using System;
+
+namespace DependencyInjection.Core
+{
+	internal class Dependency
+	{
+		public Type Register { get; }
+		public Type Implemented { get; set; }
+		public Func<IContainer, object> Factory { get; set; }
+		
+		public Type Lifecycle { get; set; }
+		public ILifecycle Instance { get; set; }
+
+		public Dependency(Type register)
+		{
+			Register = register;
+			Implemented = register;
+			Lifecycle = typeof(Transient);
+		}
+	}
+}
