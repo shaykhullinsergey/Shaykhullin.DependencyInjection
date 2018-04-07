@@ -8,3 +8,7 @@
 *.nupkg
 Inject/.vs/
 Inject/Inject/obj/
+
+DependencyInjection/obj/
+
+DependencyInjection\.Core/obj/

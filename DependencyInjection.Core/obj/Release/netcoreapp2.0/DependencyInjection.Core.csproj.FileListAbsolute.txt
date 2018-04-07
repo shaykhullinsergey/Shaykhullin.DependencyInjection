@@ -1,8 +1,0 @@
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/bin/Release/netcoreapp2.0/DependencyInjection.Core.deps.json
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/bin/Release/netcoreapp2.0/DependencyInjection.Core.dll
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/bin/Release/netcoreapp2.0/DependencyInjection.Core.pdb
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/obj/Release/netcoreapp2.0/DependencyInjection.Core.csproj.CoreCompileInputs.cache
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/obj/Release/netcoreapp2.0/DependencyInjection.Core.AssemblyInfoInputs.cache
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/obj/Release/netcoreapp2.0/DependencyInjection.Core.AssemblyInfo.cs
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/obj/Release/netcoreapp2.0/DependencyInjection.Core.dll
-/home/shaykhullin/Git/DependencyInjection/DependencyInjection.Core/obj/Release/netcoreapp2.0/DependencyInjection.Core.pdb
