@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DependencyInjection.Core\DependencyInjection.Core.csproj" />
+    <ProjectReference Include="..\Shaykhullin.DependencyInjection.Core\Shaykhullin.DependencyInjection.Core.csproj" />
   </ItemGroup>
 </Project>

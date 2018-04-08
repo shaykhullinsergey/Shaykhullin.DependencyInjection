@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection.Core", "DependencyInjection.Core\DependencyInjection.Core.csproj", "{AD10F677-7FCF-411B-AFC5-AFF71AF9820A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaykhullin.DependencyInjection.Core", "Shaykhullin.DependencyInjection.Core\Shaykhullin.DependencyInjection.Core.csproj", "{AD10F677-7FCF-411B-AFC5-AFF71AF9820A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{ACC4373F-E9AB-4DEB-8671-E84B3554A1E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shaykhullin.DependencyInjection", "Shaykhullin.DependencyInjection\Shaykhullin.DependencyInjection.csproj", "{ACC4373F-E9AB-4DEB-8671-E84B3554A1E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

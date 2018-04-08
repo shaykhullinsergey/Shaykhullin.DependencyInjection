@@ -12,3 +12,7 @@ Inject/Inject/obj/
 DependencyInjection/obj/
 
 DependencyInjection\.Core/obj/
+
+Shaykhullin\.DependencyInjection/obj/
+
+Shaykhullin\.DependencyInjection\.Core/obj/
