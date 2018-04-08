@@ -11,8 +11,8 @@ namespace DependencyInjection
 
 		public DependencyContainer(DependencyContainer parent)
 		{
-			this.parent = parent;
 			dependencies = new List<Dependency>();
+			this.parent = parent;
 		}
 
 		public Dependency Register(Type register)

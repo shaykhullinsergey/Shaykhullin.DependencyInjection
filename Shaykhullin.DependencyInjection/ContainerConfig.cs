@@ -6,18 +6,16 @@ namespace DependencyInjection
 	public class ContainerConfig : IContainerConfig
 	{
 		private IContainer container;
-		private readonly ContainerConfig parent;
 		private readonly DependencyContainer dependencies;
 
 		public ContainerConfig()
 		{
-			dependencies = new DependencyContainer(parent?.dependencies);
+			dependencies = new DependencyContainer(null);
 		}
 
 		internal ContainerConfig(ContainerConfig parent) 
-			: this()
 		{
-			this.parent = parent;
+			dependencies = new DependencyContainer(parent.dependencies);
 		}
 
 		public IImplementedByBuilder<TRegister> Register<TRegister>()
