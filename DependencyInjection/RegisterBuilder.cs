@@ -5,9 +5,9 @@ namespace DependencyInjection.Core
 {
 	internal class RegisterBuilder : IRegisterBuilder
 	{
-		private readonly Dictionary<Type, Dependency> dependencies;
+		private readonly DependencyContainer dependencies;
 
-		public RegisterBuilder(Dictionary<Type, Dependency> dependencies)
+		public RegisterBuilder(DependencyContainer dependencies)
 		{
 			this.dependencies = dependencies;
 		}
@@ -20,8 +20,7 @@ namespace DependencyInjection.Core
 
 		public IImplementedByBuilder<object> Register(Type register)
 		{
-			var dto = new Dependency(register);
-			dependencies.Add(register, dto);
+			var dto = dependencies.Register(register);
 			return new ImplementedByBuilder<object>(dto);
 		}
 	}

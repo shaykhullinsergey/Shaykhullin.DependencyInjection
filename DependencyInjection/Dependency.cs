@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace DependencyInjection.Core
 {
@@ -10,6 +11,9 @@ namespace DependencyInjection.Core
 		
 		public Type Lifecycle { get; set; }
 		public ILifecycle Instance { get; set; }
+
+		public Type For { get; set; }
+		public Type[] Parameters { get; set; }
 
 		public Dependency(Type register)
 		{

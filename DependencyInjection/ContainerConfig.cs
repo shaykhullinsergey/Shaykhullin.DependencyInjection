@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DependencyInjection.Core;
 
 namespace DependencyInjection
@@ -7,15 +6,15 @@ namespace DependencyInjection
 	public class ContainerConfig : IContainerConfig
 	{
 		private IContainer container;
-		private readonly IContainerConfig parent;
-		private readonly Dictionary<Type, Dependency> dependencies;
+		private readonly ContainerConfig parent;
+		private readonly DependencyContainer dependencies;
 
 		public ContainerConfig()
 		{
-			dependencies = new Dictionary<Type, Dependency>();
+			dependencies = new DependencyContainer(parent?.dependencies);
 		}
 
-		internal ContainerConfig(IContainerConfig parent) 
+		internal ContainerConfig(ContainerConfig parent) 
 			: this()
 		{
 			this.parent = parent;
@@ -32,10 +31,8 @@ namespace DependencyInjection
 
 		public IContainerConfig Scope() => new ContainerConfig(this);
 
-		public IContainer Container => container ?? (container = new Container(dependencies, (Container)parent?.Container));
+		public IContainer Container => container ?? (container = new Container(dependencies));
 
-		public void Dispose()
-		{
-		}
+		public void Dispose() { }
 	}
 }

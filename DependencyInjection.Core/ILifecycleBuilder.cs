@@ -2,11 +2,17 @@
 
 namespace DependencyInjection.Core
 {
-	public interface ILifecycleBuilder
+	public interface ILifecycleBuilder : IForBuilder
 	{
-		void As<TLifecycle>()
+		IForBuilder As<TLifecycle>()
 			where TLifecycle : ILifecycle;
 
-		void As(Type lifecycle);
+		IForBuilder As(Type lifecycle);
+	}
+	
+	public interface IForBuilder
+	{
+		void For<TDependency>();
+		void For(Type dependency);
 	}
 }

@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DependencyInjection.Core
 {
 	internal class Container : IContainer
 	{
-		private readonly Container parent;
-		private readonly Dictionary<Type, Dependency> dependencies;
+		private readonly DependencyContainer dependencies;
 
-		public Container(Dictionary<Type, Dependency> dependencies, Container parent)
+		public Container(DependencyContainer dependencies)
 		{
 			this.dependencies = dependencies;
-			this.parent = parent;
 		}
 
 		public TResolve Resolve<TResolve>()
@@ -22,10 +19,12 @@ namespace DependencyInjection.Core
 
 		public object Resolve(Type type)
 		{
-			if (!dependencies.TryGetValue(type, out var dependency))
-			{
-				dependency = parent?.Find(type) ?? throw new InvalidOperationException($"{type} not found");
-			}
+			return ResolveRecursive(type, null);
+		}
+
+		private object ResolveRecursive(Type register, Type @for)
+		{
+			var dependency = dependencies.Get(register, @for) ?? throw new InvalidOperationException($"{register} not found");
 
 			if (dependency.Instance == null)
 			{
@@ -37,23 +36,26 @@ namespace DependencyInjection.Core
 				return dependency.Instance.Resolve(() => dependency.Factory(this));
 			}
 
-			var ctor = dependency.Implemented.GetConstructors()[0];
-			var parameters = ctor.GetParameters();
-			var arguments = new object[parameters.Length];
+			if (dependency.Parameters == null)
+			{
+				var ctor = dependency.Implemented.GetConstructors()[0];
+				var parameters = ctor.GetParameters();
+				
+				dependency.Parameters = new Type[parameters.Length];
+				for (var i = 0; i < parameters.Length; i++)
+				{
+					dependency.Parameters[i] = parameters[i].ParameterType;
+				}
+			}
+			
+			var arguments = new object[dependency.Parameters.Length];
 
 			for (var i = 0; i < arguments.Length; i++)
 			{
-				arguments[i] = Resolve(parameters[i].ParameterType);
+				arguments[i] = ResolveRecursive(dependency.Parameters[i], register);
 			}
 
 			return dependency.Instance.Resolve(dependency.Implemented, arguments);
-		}
-
-		private Dependency Find(Type type)
-		{
-			return dependencies.TryGetValue(type, out var dependency)
-				? dependency
-				: parent?.Find(type);
 		}
 	}
 }
